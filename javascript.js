@@ -1,30 +1,32 @@
 function game() {
-    let winCounter = 0;
-    for (let i = 0; i < 5; i++) {
+    let playerWins = 0;
+    let computerWins = 0;
+    while (playerWins < 5 || computerWins < 5) {
 
-        
+
         let computerSelection = getComputerChoice();
         let playerSelection = prompt("Please enter your choice", "rock");
         playerSelection = playerSelection.toLowerCase();
         let outcome = playRound(playerSelection, computerSelection);
 
         if (outcome == true) {
-            winCounter++;
-            console.log(playerWins(playerSelection, computerSelection));
+            playerWins++;
+            console.log(playerWin(playerSelection, computerSelection));
         }
-        else if(outcome == false){
-            console.log(playerLoses(playerSelection, computerSelection));
+        else if (outcome == false) {
+            console.log(playerLoss(playerSelection, computerSelection));
+            computerWins++;
         }
-        else if(outcome == null){
-            i--;
+        else if (outcome == null) {
             console.log("Draw!");
         }
-        console.log(winCounter);
+        console.log("You have " + playerWins + " wins!");
+        console.log("Computer has " + computerWins + " wins!");
     }
-    if (winCounter > 2) {
+    if (playerWins => 5) {
         console.log("You won!");
     }
-    else{
+    else {
         console.log("You lose!");
     }
 
@@ -89,11 +91,11 @@ function getComputerChoice() {
 
 }
 
-function playerWins(playerSelection, computerSelection) {
+function playerWin(playerSelection, computerSelection) {
     return ("You win! " + playerSelection + " beats " + computerSelection);
 }
 
-function playerLoses(playerSelection, computerSelection) {
+function playerLoss(playerSelection, computerSelection) {
     return ("You lose! " + computerSelection + " beats " + playerSelection);
 }
 
