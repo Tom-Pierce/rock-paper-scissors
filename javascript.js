@@ -1,35 +1,40 @@
-function game() {
-    let playerWins = 0;
-    let computerWins = 0;
-    while (playerWins < 5 || computerWins < 5) {
+let computerWins = 0;
+let playerWins = 0;
+
+function game(playerSelection) {
 
 
-        let computerSelection = getComputerChoice();
-        let playerSelection = prompt("Please enter your choice", "rock");
-        playerSelection = playerSelection.toLowerCase();
-        let outcome = playRound(playerSelection, computerSelection);
+    let computerSelection = getComputerChoice();
+    let outcome = playRound(playerSelection, computerSelection);
 
-        if (outcome == true) {
-            playerWins++;
-            console.log(playerWin(playerSelection, computerSelection));
-        }
-        else if (outcome == false) {
-            console.log(playerLoss(playerSelection, computerSelection));
-            computerWins++;
-        }
-        else if (outcome == null) {
-            console.log("Draw!");
-        }
-        console.log("You have " + playerWins + " wins!");
-        console.log("Computer has " + computerWins + " wins!");
+
+    if (outcome == true) {
+        playerWins++;
+        // console.log(playerWin(playerSelection, computerSelection));
     }
-    if (playerWins => 5) {
+    else if (outcome == false) {
+        // console.log(playerLoss(playerSelection, computerSelection));
+        computerWins++;
+    }
+    else if (outcome == null) {
+        // console.log("Draw!");
+    }
+    console.log("You have " + playerWins + " wins!");
+    console.log("Computer has " + computerWins + " wins!");
+
+    if (playerWins > 4) {
         console.log("You won!");
+        resetGame();
     }
-    else {
+    else if(computerWins > 4){
         console.log("You lose!");
+        resetGame();
     }
+}
 
+function resetGame(){
+    computerWins = 0;
+    playerWins = 0;
 }
 
 function playRound(playerSelection, computerSelection) {
@@ -104,4 +109,38 @@ function randomIntFromInterval(min, max) { // min and max included
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
-game();
+
+// function game() {
+//     let playerWins = 0;
+//     let computerWins = 0;
+//     while (playerWins < 5 && computerWins < 5) {
+//         console.log("you have won" + playerWins + " times, computer has won " + computerWins);
+
+
+//         let computerSelection = getComputerChoice();
+//         let playerSelection = prompt("Please enter your choice", "rock");
+//         playerSelection = playerSelection.toLowerCase();
+//         let outcome = playRound(playerSelection, computerSelection);
+
+//         if (outcome == true) {
+//             playerWins++;
+//             // console.log(playerWin(playerSelection, computerSelection));
+//         }
+//         else if (outcome == false) {
+//             // console.log(playerLoss(playerSelection, computerSelection));
+//             computerWins++;
+//         }
+//         else if (outcome == null) {
+//             // console.log("Draw!");
+//         }
+//         // console.log("You have " + playerWins + " wins!");
+//         // console.log("Computer has " + computerWins + " wins!");
+//     }
+//     if (playerWins > 4) {
+//         console.log("You won!");
+//     }
+//     else {
+//         console.log("You lose!");
+//     }
+
+// }
